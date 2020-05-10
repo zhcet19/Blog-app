@@ -18,14 +18,14 @@ var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     body: String,
-    created: {type: Date, default: Date.now}
+    created: {type: Date,default: Date.now}
 });
 var Blog = mongoose.model("Blog", blogSchema);
 
 
 
 app.get("/", function(req, res){
-   res.redirect("/blogs"); 
+   res.redirect("/blogs");
 });
 
 
@@ -48,9 +48,8 @@ app.get("/blogs/new", function(req, res){
 app.post("/blogs", function(req, res){
     // create blog
     console.log(req.body);
-    console.log("===========")
     console.log(req.body);
-    Blog.create(req.body.blog, function(err, newBlog){
+    Blog.create(req.body.blog, function(err,newBlog){
         if(err){
             res.render("new");
         } else {
@@ -62,11 +61,11 @@ app.post("/blogs", function(req, res){
 
 // SHOW ROUTE
 app.get("/blogs/:id", function(req, res){
-   Blog.findById(req.params.id, function(err, foundBlog){
+   Blog.findById(req.params.id, function(err,foundBlog){
        if(err){
            res.redirect("/blogs");
        } else {
-           res.render("show", {blog: foundBlog});
+           res.render("show", {blog:foundBlog});
        }
    })
 });
